@@ -1,0 +1,22 @@
+name: Mi primer pipeline
+
+on: [push]
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Instalar HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Ejecutar linter
+        run: htmlhint index.html
